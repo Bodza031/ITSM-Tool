@@ -7,31 +7,33 @@ using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Data.Entity.Infrastructure;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")]
-    public class ContactsController : ControllerBase
+    
+    public class UsersController : BaseApiController
     {
         private readonly DataContext _context;
 
-        public ContactsController(DataContext context)
+        public UsersController(DataContext context)
         {
             _context = context;
         }
 
+        [AllowAnonymous]
         [HttpGet]
-        public ActionResult<IEnumerable<Contact>> GetUsers()
+        public ActionResult<IEnumerable<AppUser>> GetUsers()
         {
-            return _context.Contacts.ToList();
+            return _context.AppUser.ToList();
         }
 
         // api/Contacts/3
+        [Authorize]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Contact>> GetUser(int id)
+        public async Task<ActionResult<AppUser>> GetUser(int id)
         {
-            return await _context.Contacts.FindAsync(id);
+            return await _context.AppUser.FindAsync(id);
         }
         
     }

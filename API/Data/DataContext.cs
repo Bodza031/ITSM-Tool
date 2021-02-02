@@ -13,7 +13,7 @@ namespace API.Data
         {
         }
 
-        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<AppUser> AppUser { get; set; }
         
     }
 }
