@@ -24,9 +24,16 @@ namespace API.Controllers
             _context = context;
         }
 
+        
         [HttpPost("register")]
+        /// <summary>
+        /// Register method that store user and password in DB.
+        /// </summary>
+        /// <param name="registerDto">Have 2 values Username and password, this is model method recive from Angular</param>
+        /// <returns>It return User informations from registered user (Username,Token)</returns>
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
+            
             if (await UserExists(registerDto.Username)) return BadRequest("Username is taken");
 
             using var hmac = new HMACSHA512();
