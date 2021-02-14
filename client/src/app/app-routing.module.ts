@@ -5,7 +5,7 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
 import { HomeComponent } from './home/home.component';
 import { ListsComponent } from './lists/lists.component';
-import { MemberListDetailComponent } from './members/member-list-detail/member-list-detail.component';
+import { MemberDetailsComponent } from './members/member-details/member-details.component';
 import { MemberListComponent } from './members/member-list/member-list.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guards/auth.guard';
@@ -18,7 +18,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     children: [
       { path: 'members', component: MemberListComponent, canActivate: [AuthGuard] },
-      { path: 'members/:id', component: MemberListDetailComponent },
+      { path: 'members/:username', component: MemberDetailsComponent },
       { path: 'lists', component: ListsComponent },
       { path: 'messages', component: MessagesComponent },
     ]
